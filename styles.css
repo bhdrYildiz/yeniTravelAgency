@@ -9,7 +9,7 @@
   --hero-font: "Poppins", sans-serif;
   --title-font: "Volkhov", sans-serif;
   --title-color: #181e4b;
-  --title-colors: #df6951;
+  --title-colors: #FF946D;
   --button-color: #686d77;
   --second-color: #14183e;
   --third-color: #1e1d4c;
@@ -114,10 +114,6 @@ header .nav-link:hover {
   font-size: 18px;
   font-family: var(--font);
 }
-.hero-buttons .playButton {
-  color: var(--button-color);
-  font-size: 17px;
-}
 .hero-buttons .playDemo:focus,
 .hero-buttons .findOut:focus {
   box-shadow: none;
@@ -142,20 +138,22 @@ header .nav-link:hover {
   background-color: #d95c4b;
   border-radius: 50%;
   padding: 20px;
-  filter: drop-shadow(0.1rem 0.3rem 0.2rem #d95c4b);
+}
+.service-section{
+  margin-top: 100px;
 }
 .service-icon img {
   width: auto;
   height: 80px;
 }
-.service-category {
+.common-h4 {
   color: var(--hero-color);
   font-size: 18px;
   font-family: var(--hero-font);
   font-weight: 600;
   line-height: 27px;
 }
-.service-title {
+.common-h1 {
   color: var(--second-color);
   font-family: var(--title-font);
   font-size: 50px;
@@ -163,8 +161,16 @@ header .nav-link:hover {
   line-height: 64px;
 }
 .service-item {
+  margin-top: 20px;
   padding: 40px;
   max-width: max-content;
+  transition: all 0.1 ease;
+  position: relative;
+}
+.service-item:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 16px;
 }
 .service-text h5 {
   color: var(--third-color);
@@ -180,11 +186,6 @@ header .nav-link:hover {
   font-size: 16px;
   line-height: 26px;
 }
-.row > .col-md-3:nth-child(2) .service-item {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  background: #fff;
-  border-radius: 16px;
-}
 .rectangle {
   position: absolute;
   width: auto;
@@ -192,6 +193,11 @@ header .nav-link:hover {
   bottom: -40px;
   left: -40px;
   z-index: -1;
+  display: none;
+}
+.service-item:hover .rectangle {
+  display: block;
+  opacity: 1;
 }
 .decoreSection {
   position: absolute;
@@ -203,20 +209,7 @@ header .nav-link:hover {
 .destination-section {
   margin-top: 160px;
 }
-.destination-category {
-  font-family: var(--hero-font);
-  color: var(--hero-color);
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-}
-.destination-title {
-  font-family: var(--title-font);
-  color: var(--second-color);
-  font-weight: 700;
-  line-height: 64px;
-  font-size: 50px;
-}
+
 .destination-item {
   width: auto;
   border-radius: 16px;
@@ -464,51 +457,64 @@ header .nav-link:hover {
   font-weight: 400;
   font-size: 14px;
 }
-.swiper-buttons{
-  .swiper-button-next,
-  .swiper-button-prev {
-    left: 10%;
-    transform: rotate(90deg);
-    transform-origin: left center;
-    color: #3E2E4D;
-  }
-
-  .swiper-button-prev {
-    position: relative;
-    top: 10px;
-  }
-
-  .swiper-button-next {
-    position: relative;
-  }
-}
 .card-slider__pagination{
   margin-top: 50px;
 }
-
-.logos{
-    margin-top: 150px;
-    margin-bottom: 100px;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 82px;
+.swiper-pagination-bullet {
+  background-color: #39425D;
 }
-.logo {
-  filter: grayscale(100%);
-  opacity: 0.5;
+.swiper-button-next,
+.swiper-button-prev {
+  left: 10%;
+  transform: rotate(90deg);
+  transform-origin: left center;
+  color: #3E2E4D;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.swiper-button-prev {
+  position: relative;
+  top: 10px;
+}
+.swiper-button-next {
+  position: relative;
+}
+.swiper-buttons .swiper-button-next::after,
+.swiper-buttons .swiper-button-prev::after{
+  font-size: 18px;
+}
+.logos {
+  margin-top: 150px;
+  margin-bottom: 100px;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 82px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 110px;
   transition: all 0.3s ease;
 }
-.highlighted {
+
+.logo {
+  display: inline-block;
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+.logo-container:hover .logo {
   filter: grayscale(0%);
   opacity: 1;
+}
+
+.logo-container:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #fff;
-  padding: 2px 24px;
-}
-.dimmed:hover {
-  filter: grayscale(0%);
-  opacity: 1;
+  padding: 16px 32px;
 }
 .subscribe-section {
     background-color: #f7f7fc;
@@ -536,13 +542,19 @@ header .nav-link:hover {
     max-width: 40%;
     font-family: var(--hero-font);
     color: var(--third-color);
+    z-index: 1;
+}
+.subscribe-form .input-icons i {
+  margin-left: 10px;
+  color: var(--third-color);
 }
 .subscribe-form .input-icons .input-field{
   border: none;
-  padding: 10px 20px;
+  width: calc(100% - 30px);
+  padding: 10px 10px 10px 30px;  
 }
 .subscribe-form .btn{
-    padding: 10px 30px;
+    padding: 10px 40px;
     background-color: var(--title-colors);
     border-radius: 8px;
     color: white;
@@ -561,7 +573,7 @@ header .nav-link:hover {
 }
 .sonSection .maskGroupAlt{
   position: absolute;
-  top: 180px;
+  top: 200px;
   left: -40px;
 }
 .sonSection .sagAltDecor{
